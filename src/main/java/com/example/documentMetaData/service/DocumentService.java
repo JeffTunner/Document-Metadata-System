@@ -4,6 +4,7 @@ import com.example.documentMetaData.entity.Document;
 import com.example.documentMetaData.entity.DocumentClass;
 import com.example.documentMetaData.entity.MetadataField;
 import com.example.documentMetaData.repository.DocumentClassRepository;
+import com.example.documentMetaData.repository.DocumentRepository;
 import com.example.documentMetaData.repository.MetadataFieldRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,9 @@ public class DocumentService {
 
     @Autowired
     MetadataFieldRepository fieldRepository;
+
+    @Autowired
+    DocumentRepository documentRepository;
 
     public DocumentClass defineClass(DocumentClass documentClass) {
         return classRepository.save(documentClass);
@@ -31,6 +35,6 @@ public class DocumentService {
         String className = document.getClassName();
         DocumentClass documentClass = classRepository.findByNameIgnoreCase(className);
         document.setDocumentClass(documentClass);
-
+        return documentRepository.save(document);
     }
 }
