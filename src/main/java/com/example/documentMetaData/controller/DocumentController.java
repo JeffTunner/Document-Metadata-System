@@ -1,7 +1,9 @@
 package com.example.documentMetaData.controller;
 
+import com.example.documentMetaData.dto.DocumentMetadataRequestDto;
 import com.example.documentMetaData.entity.Document;
 import com.example.documentMetaData.entity.DocumentClass;
+import com.example.documentMetaData.entity.DocumentMetadata;
 import com.example.documentMetaData.entity.MetadataField;
 import com.example.documentMetaData.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +33,15 @@ public class DocumentController {
     @PostMapping("/documents")
     public Document createDocument(@RequestBody Document document) {
         return documentService.createDocument(document);
+    }
+
+    @PostMapping("/documents/{id}/metadata")
+    public DocumentMetadata addValue(@PathVariable Long id, @RequestBody DocumentMetadataRequestDto metadataRequestDto) {
+        return documentService.addingValues(id, metadataRequestDto);
+    }
+
+    @PostMapping("/documents/{id}/finalize")
+    public String finalDocument(@PathVariable Long id) {
+        return documentService.finalizeDocument(id);
     }
 }
