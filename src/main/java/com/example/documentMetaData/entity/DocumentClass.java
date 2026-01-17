@@ -22,5 +22,5 @@ public class DocumentClass {
     private String name;
 
     @OneToMany(mappedBy = "documentClass", cascade = CascadeType.ALL)
-    private List<MetadataField> field;
+    private List<MetadataField> fields;
 }
