@@ -19,7 +19,7 @@ public class Document {
 
     private String name;
 
-    @OneToOne
+    @ManyToOne
     private DocumentClass documentClass;
 
     private String className;
